@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 root 'products#index'
 get '/products' => "products#list", as: :products
-get '/products/:id' => "products#product_x", as: :product_x
+get '/products/:id' => "products#show", as: :show
 
 
 
