@@ -13,11 +13,22 @@ class ProductsController < ApplicationController
 
   def show
 
+    @product_list = fetch_product_list
+
+    @product = @product_list.find do |p|
+        p.pid == params[:id]
+    end
+
   end
 
   def list
 
-    @product_list = []
+    @product_list = fetch_product_list
+
+  end
+
+  def fetch_product_list
+    product_list = []
 
     CSV.foreach("#{Rails.root}/mf_inventory.csv", headers: true) do |row|
       product_hash = row.to_hash
@@ -34,13 +45,10 @@ class ProductsController < ApplicationController
       product_x.quantity = product_hash['quantity']
       product_x.category = product_hash['category']
 
-      @product_list << product_x
-
+      product_list << product_x
     end
 
-  end
-
-  def fetch_product_list
+    return product_list
 
   end
 

@@ -1,20 +1,57 @@
 <div class="row">
 
-  <div class="col-xs-11">
+  <div class="col-xs-11 title-area">
 
     <h1 class= "page_title">
-      <%= link_to root_path do%>
+      <%= link_to root_path, class: "page_title_text" do%>
       Mallory Furniture
       <% end%>
     </h1>
 
   </div>
 
-  <div class="col-xs-1">
-      <%= link_to 'Home', root_path, class: "btn btn-lg btn-block btn-success" %>
-      <%= link_to 'Back', products_path, class: "btn btn-lg btn-block btn-success" %>
+  <div class="col-xs-1 buttons-area">
 
+          <%= link_to root_path, class: "btn btn-lg btn-block btn-success" do %>
+           <span class= "glyphicon glyphicon-home"></span>
+          <%end%>
+
+          <%= link_to products_path, class: "btn btn-lg btn-block btn-success red" do%>
+          <span class= "glyphicon glyphicon-arrow-left"></span>
+          <%end%>
   </div>
 </div>
 
-this is a product
+<div class="row">
+  <div class="col-xs-11">
+    <div class= "row">
+      <div class= "col-xs-8">
+        <p><%= image_tag @product.img_tag, class: "p_image" %><br>
+      </div>
+      <div class= "col-xs-4 product-side-info">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <%= @product.item %><br>
+          </div>
+          <div class= "product_info">
+            <p class= "product_price_label">Price</p>
+            <p class= "txt"><%= number_to_currency @product.price %></p>
+            <p class= "product_dd_label">Description</p>
+            <p class= "txt"><%= @product.description %></p>
+            <p class= "product_dd_label">Dimensions</p>
+            <p class= "txt">Width: <%= @product.width %><p>
+            <p class= "txt">Length: <%= @product.length %></p>
+            <p class= "txt">Height: <%= @product.height %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</p>
+
+
+  </div>
+
+  <div class="col-xs-1">
+  </div>
+</div>
