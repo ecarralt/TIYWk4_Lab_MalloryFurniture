@@ -4,10 +4,14 @@ class ProductsController < ApplicationController
 
 
   class Product
-    attr_accessor :pid, :item, :description, :price, :condition, :width, :length, :height, :img_tag, :quantity, :category
+    attr_accessor :pid, :item, :description, :price, :condition, :width, :length, :height, :img_tag, :quantity, :category, :in_clearance
   end
 
   def index
+    @match_disc_product = Product.new
+    @unique_conditions = fetch_unique_conditions
+    @product_list = fetch_product_list
+    @discounted_prodlist = apply_discount_overall
 
   end
 
@@ -24,7 +28,39 @@ class ProductsController < ApplicationController
   def list
 
     @product_list = fetch_product_list
+    @discounted_prodlist = apply_discount_overall
 
+  end
+
+  def apply_discount_overall
+    plist = fetch_product_list
+
+    discounted_plist = []
+
+    plist.each do |p|
+      case p.condition
+      when "good"
+        p.price = p.price * 0.9
+        p.in_clearance = "Clearance"
+      when "average"
+        p.price = p.price * 0.8
+        p.in_clearance = "Clearance"
+      else
+      end
+      discounted_plist << p
+    end
+
+    return discounted_plist
+
+
+  end
+
+  def fetch_unique_conditions
+    plist = fetch_product_list
+    unique_conditions = plist.map do |p|
+      p.condition
+    end.uniq
+    return unique_conditions
   end
 
   def fetch_product_list
@@ -44,6 +80,7 @@ class ProductsController < ApplicationController
       product_x.img_tag = product_hash['img_file']
       product_x.quantity = product_hash['quantity']
       product_x.category = product_hash['category']
+      product_x.in_clearance = "No Clearance"
 
       product_list << product_x
     end

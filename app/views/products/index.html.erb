@@ -17,3 +17,49 @@
     </p>
   </div>
 </div>
+
+<%= @unique_conditions%>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Condition</th>
+    <th>Original Price</th>
+    <th>Discounted Price</th>
+  </tr>
+
+<% @product_list.each do |p|%>
+  <tr>
+    <td><%=p.pid%></td>
+    <td><%=p.item%></td>
+    <td><%=p.condition%></td>
+    <td><%=p.price%></td>
+
+
+  <%
+      match_price = 0
+
+      if p.condition == "good"
+        @match_disc_product = @discounted_prodlist.find do |dp|
+          dp.item == p.item
+        end
+      elsif p.condition == "average"
+        @match_disc_product = @discounted_prodlist.find do |dp|
+          dp.item == p.item
+        end
+      else
+        @match_disc_product = p
+      end
+
+
+  %>
+
+    <td><%=@match_disc_product.price%></td>
+
+
+  </tr>
+
+
+<%end%>
+</table>
