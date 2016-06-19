@@ -35,7 +35,14 @@
           </div>
           <div class= "product_info">
             <p class= "product_price_label">Price</p>
-            <p class= "txt"><%= number_to_currency @product.price %></p>
+            <p class= "txt"><%= number_to_currency @product.price %>
+
+              <% if @product.in_clearance == "Clearance"%>
+              <span class="clearancetext">Clearance!</span>
+              <%else
+              end%>
+
+            </p>
             <p class= "product_dd_label">Description</p>
             <p class= "txt"><%= @product.description %></p>
             <p class= "product_dd_label">Dimensions</p>

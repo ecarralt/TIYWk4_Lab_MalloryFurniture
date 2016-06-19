@@ -12,14 +12,14 @@ class ProductsController < ApplicationController
     @unique_conditions = fetch_unique_conditions
     @product_list = fetch_product_list
     @discounted_prodlist = apply_discount_overall
+    @unique_categories = fetch_unique_categories
 
   end
 
   def show
 
-    @product_list = fetch_product_list
-
-    @product = @product_list.find do |p|
+    @discounted_prodlist = apply_discount_overall
+    @product = @discounted_prodlist.find do |p|
         p.pid == params[:id]
     end
 
@@ -27,10 +27,15 @@ class ProductsController < ApplicationController
 
   def list
 
-    @product_list = fetch_product_list
     @discounted_prodlist = apply_discount_overall
 
   end
+
+  def bedroomproducts
+    @discounted_prodlist = apply_discount_overall
+
+  end
+
 
   def apply_discount_overall
     plist = fetch_product_list
@@ -61,6 +66,14 @@ class ProductsController < ApplicationController
       p.condition
     end.uniq
     return unique_conditions
+  end
+
+  def fetch_unique_categories
+    plist = fetch_product_list
+    unique_categories = plist.map do |p|
+      p.category
+    end.uniq
+    return unique_categories
   end
 
   def fetch_product_list

@@ -19,9 +19,12 @@
 </div>
 
 
+<%= @unique_categories%>
 
-<!-- CODE USED TO DO DATA CHECKS IS BELOW -->
-<!--
+
+
+<!-- CODE USED TO DO DATA CHECKS IS BELOW
+
 
 1) CHECK THE UNIQUE CONDITIONS TO MAKE SURE DATA IS OK
 
@@ -75,3 +78,24 @@
 
 <%end%>
 </table> -->
+
+
+
+
+
+
+<!--
+COUNTING AND DISPLAYING IMG NAMES TO UNDERSTAND MISSING IMAGE AND MISLABELED IMG TAG
+<% count = 0
+
+  @product_list.each do |p|
+    count += 1
+
+  end%>
+
+<%=count %>
+
+
+  <% @product_list.sort_by do |p| p.img_tag%>
+    <p><%= p.item%><span> </span><%= p.img_tag%></p>
+  <%end%> -->
