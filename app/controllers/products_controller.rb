@@ -26,103 +26,42 @@ class ProductsController < ApplicationController
 
   def displaybycategory
 
-    @disc_category_prodlist = []
+    @disc_category_prodlist = fetch_disc_cat_products (params[:category])
 
-    case params[:category]
-    when "bedroom"
-      @disc_category_prodlist = fetch_disc_bedroom_products
-    when "desks"
-      @disc_category_prodlist = fetch_disc_desk_products
-    when "seating"
-      @disc_category_prodlist = fetch_disc_seating_products
-    when "storage"
-      @disc_category_prodlist = fetch_disc_storage_products
-    when "tables"
-      @disc_category_prodlist = fetch_disc_table_products
-    when "miscellaneous"
-      @disc_category_prodlist = fetch_disc_misc_products
-    else
-    end
+
+# REFAcTORED THIS OUT!
+    # case params[:category]
+    # when "bedroom"
+    #   @disc_category_prodlist = fetch_disc_bedroom_products
+    # when "desks"
+    #   @disc_category_prodlist = fetch_disc_desk_products
+    # when "seating"
+    #   @disc_category_prodlist = fetch_disc_seating_products
+    # when "storage"
+    #   @disc_category_prodlist = fetch_disc_storage_products
+    # when "tables"
+    #   @disc_category_prodlist = fetch_disc_table_products
+    # when "miscellaneous"
+    #   @disc_category_prodlist = fetch_disc_misc_products
+    # else
+    # end
 
   end
 
 
 
 
-  def fetch_disc_misc_products
+  def fetch_disc_cat_products (category)
     @discounted_prodlist = apply_discount_overall
 
     disc_misc_prodlist = []
 
     disc_misc_prodlist = @discounted_prodlist.select do |p|
-        p.category == "miscellaneous"
+        p.category == category
     end
     return disc_misc_prodlist
 
   end
-
-  def fetch_disc_table_products
-    @discounted_prodlist = apply_discount_overall
-
-    disc_table_prodlist = []
-
-    disc_table_prodlist = @discounted_prodlist.select do |p|
-        p.category == "tables"
-    end
-    return disc_table_prodlist
-
-  end
-
-  def fetch_disc_storage_products
-    @discounted_prodlist = apply_discount_overall
-
-    disc_storage_prodlist = []
-
-    disc_storage_prodlist = @discounted_prodlist.select do |p|
-        p.category == "storage"
-    end
-    return disc_storage_prodlist
-
-  end
-
-  def fetch_disc_seating_products
-    @discounted_prodlist = apply_discount_overall
-
-    disc_seating_prodlist = []
-
-    disc_seating_prodlist = @discounted_prodlist.select do |p|
-        p.category == "seating"
-    end
-    return disc_seating_prodlist
-
-  end
-
-
-  def fetch_disc_desk_products
-    @discounted_prodlist = apply_discount_overall
-
-    disc_desk_prodlist = []
-
-    disc_desk_prodlist = @discounted_prodlist.select do |p|
-        p.category == "desks"
-    end
-    return disc_desk_prodlist
-
-  end
-
-
-  def fetch_disc_bedroom_products
-    @discounted_prodlist = apply_discount_overall
-
-    disc_bedroom_prodlist = []
-
-    disc_bedroom_prodlist = @discounted_prodlist.select do |p|
-        p.category == "bedroom"
-    end
-    return disc_bedroom_prodlist
-
-  end
-
 
   def apply_discount_overall
     plist = fetch_product_list
@@ -192,6 +131,82 @@ class ProductsController < ApplicationController
     return product_list
 
   end
+
+  #OLD CODE - REFACTORED THIS!
+
+  # def fetch_disc_table_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_table_prodlist = []
+  #
+  #   disc_table_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "tables"
+  #   end
+  #   return disc_table_prodlist
+  #
+  # end
+  #
+  # def fetch_disc_misc_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_misc_prodlist = []
+  #
+  #   disc_table_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "miscellaneous"
+  #   end
+  #   return disc_misc_prodlist
+  #
+  # end
+  #
+  # def fetch_disc_storage_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_storage_prodlist = []
+  #
+  #   disc_storage_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "storage"
+  #   end
+  #   return disc_storage_prodlist
+  #
+  # end
+  #
+  # def fetch_disc_seating_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_seating_prodlist = []
+  #
+  #   disc_seating_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "seating"
+  #   end
+  #   return disc_seating_prodlist
+  #
+  # end
+  #
+  #
+  # def fetch_disc_desk_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_desk_prodlist = []
+  #
+  #   disc_desk_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "desks"
+  #   end
+  #   return disc_desk_prodlist
+  #
+  # end
+  #
+  #
+  # def fetch_disc_bedroom_products
+  #   @discounted_prodlist = apply_discount_overall
+  #
+  #   disc_bedroom_prodlist = []
+  #
+  #   disc_bedroom_prodlist = @discounted_prodlist.select do |p|
+  #       p.category == "bedroom"
+  #   end
+  #   return disc_bedroom_prodlist
+  #
+  # end
 
 end
 
