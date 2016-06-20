@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
 root 'products#index'
 get '/products' => "products#list", as: :products
-get '/products/:category' => "products#displaybycategory", as: :displaybycategory
 get '/products/:id' => "products#show", as: :show
+get '/products/split/:category' => "products#displaybycategory", as: :displaybycategory
+
 
 
 

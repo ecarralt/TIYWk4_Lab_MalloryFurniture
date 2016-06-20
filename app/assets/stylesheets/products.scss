@@ -2,13 +2,13 @@
   background-color: #2C3E4F;
   color: #ffffff;
   text-align: center;
-  height: 45px;
-  line-height: 45px;
-  font-size: 18px;
+
 
   .page_title_text {
+    height: 45px;
+    line-height: 45px;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 28px;
 
     &:hover {
       text-decoration: none;
@@ -51,16 +51,59 @@
   .littlebox {
     color: #ffffff;
     float: right;
-    margin-top: 20%;
+    margin-top: 16%;
     margin-right: 50px;
     background: none;
     padding: 5px;
 
+    small{
+      color: #bdc3c7;
+
+    }
+
     .checkout_products {
       display: block;
       text-align: center;
+      background-color: #ecf0f1;
+      color: #2C3E4F;
+      font-weight: bold;
+      font-size: 18px;
+      border-color: transparent;
+      &:hover{
+        background-color: darken(#ecf0f1, 5%);
+
+      }
     }
   }
+}
+
+.menutable{
+  color: white;
+  padding-left: 150px;
+  padding-right: 150px;
+  align-items: baseline;
+  margin-top: 500px;
+  font-size: 20px;
+
+  .titles{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+
+    .homelink {
+      color: #ffffff;
+      &:hover {
+        text-decoration: none;
+
+      }
+
+    }
+
+  }
+
 }
 
 
@@ -87,6 +130,22 @@ h3 {
 
 }
 
+.navbar, .navbar-default {
+
+  border-color: darken(#ECF0F1, 10%);
+
+  .product_cats_menu{
+  background-color: lighten(#ECF0F1, 2%);
+
+    .nav, .navbar-nav, li, img, {
+      color: #2C3E4F;
+      &:hover{
+        color: lighten(#2C3E4F, 30%)
+
+      }
+    }
+  }
+}
 .product-side-info{
   margin-top: 50px;
   margin-bottom: 50px;

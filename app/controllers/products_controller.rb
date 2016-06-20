@@ -8,23 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @match_disc_product = Product.new
-    @unique_conditions = fetch_unique_conditions
     @product_list = fetch_product_list
-    @discounted_prodlist = apply_discount_overall
-    @unique_categories = fetch_unique_categories
-    @disc_bedroom_prodlist = fetch_disc_bedroom_products
-
-
-  end
-
-  def show
-
-    @discounted_prodlist = apply_discount_overall
-    @product = @discounted_prodlist.find do |p|
-        p.pid == params[:id]
-    end
-
   end
 
   def list
@@ -33,7 +17,16 @@ class ProductsController < ApplicationController
 
   end
 
+  def show
+    @discounted_prodlist = apply_discount_overall
+    @product = @discounted_prodlist.find do |p|
+        p.pid == params[:id]
+    end
+  end
+
   def displaybycategory
+
+    @disc_category_prodlist = []
 
     case params[:category]
     when "bedroom"
@@ -54,6 +47,8 @@ class ProductsController < ApplicationController
   end
 
 
+
+
   def fetch_disc_misc_products
     @discounted_prodlist = apply_discount_overall
 
@@ -65,6 +60,7 @@ class ProductsController < ApplicationController
     return disc_misc_prodlist
 
   end
+
   def fetch_disc_table_products
     @discounted_prodlist = apply_discount_overall
 
@@ -151,21 +147,21 @@ class ProductsController < ApplicationController
 
   end
 
-  def fetch_unique_conditions
-    plist = fetch_product_list
-    unique_conditions = plist.map do |p|
-      p.condition
-    end.uniq
-    return unique_conditions
-  end
-
-  def fetch_unique_categories
-    plist = fetch_product_list
-    unique_categories = plist.map do |p|
-      p.category
-    end.uniq
-    return unique_categories
-  end
+  # def fetch_unique_conditions
+  #   plist = fetch_product_list
+  #   unique_conditions = plist.map do |p|
+  #     p.condition
+  #   end.uniq
+  #   return unique_conditions
+  # end
+  #
+  # def fetch_unique_categories
+  #   plist = fetch_product_list
+  #   unique_categories = plist.map do |p|
+  #     p.category
+  #   end.uniq
+  #   return unique_categories
+  # end
 
   def fetch_product_list
     product_list = []

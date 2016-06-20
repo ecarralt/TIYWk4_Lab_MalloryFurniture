@@ -13,20 +13,42 @@
 
     </div>
     <p>
-      <%= link_to "Chckout our products", products_path, class: "btn btn-primary checkout_products"%>
+      <%= link_to "Checkout our products", products_path, class: "btn btn-primary checkout_products"%>
     </p>
   </div>
+
+  <div class="menutable">
+    <div class= "titles">
+      <%= link_to displaybycategory_path(category: "bedroom"), class:"homelink" do%>
+        <div> | Bedroom | </div>
+      <%end%>
+
+      <%= link_to displaybycategory_path(category: "desks"), class:"homelink" do%>
+      <div> | Desks | </div>
+      <%end%>
+
+      <%= link_to displaybycategory_path(category: "seating"), class:"homelink" do%>
+      <div> | Seating | </div>
+      <%end%>
+
+      <%= link_to displaybycategory_path(category: "storage"), class:"homelink" do%>
+      <div> | Storage | </div>
+      <%end%>
+
+      <%= link_to displaybycategory_path(category: "miscellaneous"), class:"homelink" do%>
+      <div> | Other | </div>
+      <%end%>
+
+
+
+    </div class= "titles">
+  </div>
+
 </div>
 
 
-<%= @unique_categories%>
 
-<p>----</p>
-
-<%= @disc_bedroom_prodlist%>
-
-
-
+<% if false %>
 <!-- CODE USED TO DO DATA CHECKS IS BELOW
 
 
@@ -34,6 +56,13 @@
 
 
 <%= @unique_conditions%>
+
+<%= @unique_categories%>
+
+<p></p>
+
+<%= @disc_bedroom_prodlist%>
+
 
 
 2) COMPARE REGULAR AND DISCOUNTED PRICES TO ENSURE CORRECT CALCULATIONS AND VARIABLE STORAGE
@@ -103,3 +132,5 @@ COUNTING AND DISPLAYING IMG NAMES TO UNDERSTAND MISSING IMAGE AND MISLABELED IMG
   <% @product_list.sort_by do |p| p.img_tag%>
     <p><%= p.item%><span> </span><%= p.img_tag%></p>
   <%end%> -->
+
+<% end %>

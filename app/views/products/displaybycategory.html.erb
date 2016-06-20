@@ -37,88 +37,83 @@
 <div class = "container">
   <div class="row">
     <div class="col-xs-11">
-
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-
-              <div class="navbar-header">
-              <%= link_to products_path, class: "navbar-brand" do%>
-                  <img alt="All">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid product_cats_menu">
+          <div class="navbar-header">
+          <%= link_to products_path, class: "navbar-brand" do%>
+              <img alt="All">
+            <%end%>
+          </div>
+          <ul class="nav navbar-nav">
+            <li>
+              <%= link_to displaybycategory_path(category: "bedroom"), class: "navbar-brand" do%>
+                  <img alt="Bedroom">
                 <%end%>
-              </div>
+            </li>
+            <li>
+              <%= link_to displaybycategory_path(category: "desks"), class: "navbar-brand" do%>
+                  <img alt="Desks">
+              <%end%>
 
-              <ul class="nav navbar-nav">
+              <%= link_to displaybycategory_path(category: "seating"), class: "navbar-brand" do%>
+                  <img alt="Seating">
+              <%end%>
 
-                <li>
-                  <%= link_to displaybycategory_path(category: "bedroom"), class: "navbar-brand" do%>
-                      <img alt="Bedroom">
-                    <%end%>
-                </li>
-                <li>
+              <%= link_to displaybycategory_path(category: "storage"), class: "navbar-brand" do%>
+                  <img alt="Storage">
+              <%end%>
 
-                  <%= link_to displaybycategory_path(category: "desks"), class: "navbar-brand" do%>
-                      <img alt="Desks">
-                  <%end%>
+              <%= link_to displaybycategory_path(category: "tables"), class: "navbar-brand" do%>
+                  <img alt="Tables">
+              <%end%>
 
-                  <%= link_to displaybycategory_path(category: "seating"), class: "navbar-brand" do%>
-                      <img alt="Seating">
-                  <%end%>
+              <%= link_to displaybycategory_path(category: "miscellaneous"), class: "navbar-brand" do%>
+                  <img alt="Other">
+              <%end%>
 
-                  <%= link_to displaybycategory_path(category: "storage"), class: "navbar-brand" do%>
-                      <img alt="Storage">
-                  <%end%>
+            </li>
 
-                  <%= link_to displaybycategory_path(category: "tables"), class: "navbar-brand" do%>
-                      <img alt="Tables">
-                  <%end%>
+          </ul>
 
-                  <%= link_to displaybycategory_path(category: "miscellaneous"), class: "navbar-brand" do%>
-                      <img alt="Other">
-                  <%end%>
+        </div>
+      </nav>
 
-                </li>
+      <% @disc_category_prodlist.in_groups_of(4, false) do |productrow|%>
+        <div class="row">
+          <% productrow.each do |px|%>
+            <div class="col-sm-4 col-md-3">
+              <div class="thumbnail">
+                <%= link_to show_path(id: px.pid) do %>
+                  <%= image_tag px.img_tag, class: "small" %>
+                <%end%>
 
-              </ul>
+                <div class="caption">
+                  <h3><%= px.item %></h3>
+                  <p>
+                    <%=number_to_currency px.price%>
+                    <% if px.in_clearance == "Clearance"%>
+                    <span class="clearancetext">Clearance!</span>
+                    <%else
+                    end%>
 
-            </div>
-          </nav>
+                  </p>
+                  <p>
 
+                    <%= link_to 'More Info', show_path(id: px.pid), class: "btn btn-default", role: "button"%>
 
-        <% @disc_category_prodlist.in_groups_of(4, false) do |productrow|%>
-          <div class="row">
-            <% productrow.each do |px|%>
-              <div class="col-sm-4 col-md-3">
-                <div class="thumbnail">
-                  <%= link_to show_path(id: px.pid) do %>
-                    <%= image_tag px.img_tag, class: "small" %>
-                    <%end%>
+                    <!-- <%= link_to show_path(id: px.pid), class: "btn btn-default", role: "button" do %>
+                      More Info <span class= "glyphicon glyphicon-asterixk"></span>
+                    <% end%> -->
 
-                  <div class="caption">
-                    <h3><%= px.item %></h3>
-                    <p>
-                      <%=number_to_currency px.price%>
-                      <% if px.in_clearance == "Clearance"%>
-                      <span class="clearancetext">Clearance!</span>
-                      <%else
-                      end%>
-
-                    </p>
-                    <p>
-
-                      <%= link_to 'More Info', show_path(id: px.pid), class: "btn btn-default", role: "button"%>
-
-                      <!-- <%= link_to show_path(id: px.pid), class: "btn btn-default", role: "button" do %>
-                        More Info <span class= "glyphicon glyphicon-asterixk"></span>
-                      <% end%> -->
-
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
-            <% end%>
-          </div>
+            </div>
+          <% end%>
+        </div>
 
-        <% end%>
+      <% end%>
+
 
     </div>
 
@@ -128,5 +123,6 @@
     </div>
 
   </div>
+
 
 </div>
