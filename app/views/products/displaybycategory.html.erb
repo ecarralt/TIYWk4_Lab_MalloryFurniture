@@ -75,7 +75,7 @@
                   <%= link_to displaybycategory_path(category: "miscellaneous"), class: "navbar-brand" do%>
                       <img alt="Other">
                   <%end%>
-                  
+
                 </li>
 
               </ul>
@@ -84,7 +84,7 @@
           </nav>
 
 
-        <% @discounted_prodlist.in_groups_of(4, false) do |productrow|%>
+        <% @disc_category_prodlist.in_groups_of(4, false) do |productrow|%>
           <div class="row">
             <% productrow.each do |px|%>
               <div class="col-sm-4 col-md-3">
