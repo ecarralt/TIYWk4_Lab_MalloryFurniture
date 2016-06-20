@@ -178,11 +178,15 @@ class ProductsController < ApplicationController
       product_x.length = product_hash['dimension_l'].to_f
       product_x.height = product_hash['dimension_h'].to_f
       product_x.img_tag = product_hash['img_file']
-      product_x.quantity = product_hash['quantity']
+      product_x.quantity = product_hash['quantity'].to_i
       product_x.category = product_hash['category']
       product_x.in_clearance = "No Clearance"
 
-      product_list << product_x
+      if product_x.quantity != 0
+        product_list << product_x
+      else
+      end
+
     end
 
     return product_list

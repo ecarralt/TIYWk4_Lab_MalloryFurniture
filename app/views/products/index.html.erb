@@ -117,8 +117,7 @@
 
 
 
-<!--
-COUNTING AND DISPLAYING IMG NAMES TO UNDERSTAND MISSING IMAGE AND MISLABELED IMG TAG
+<!-- COUNTING AND DISPLAYING IMG NAMES TO UNDERSTAND MISSING IMAGE AND MISLABELED IMG TAG
 <% count = 0
 
   @product_list.each do |p|
@@ -126,11 +125,11 @@ COUNTING AND DISPLAYING IMG NAMES TO UNDERSTAND MISSING IMAGE AND MISLABELED IMG
 
   end%>
 
-<%=count %>
+<%= count %>
 
 
   <% @product_list.sort_by do |p| p.img_tag%>
-    <p><%= p.item%><span> </span><%= p.img_tag%></p>
+    <p><%= p.item%><span> </span><%= p.img_tag%><span> </span><%= p.quantity%></p>
   <%end%> -->
 
 <% end %>
